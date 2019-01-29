@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export interface Props {
+interface Props {
   name: string
   effort?: number
 }
@@ -11,17 +11,12 @@ interface State {
 
 const getExclamationMarks = (numChars: number) => Array(numChars + 1).join('!')
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      currentEffort: props.effort || 1,
-    }
+export default class App extends React.Component<Props, State> {
+  state = {
+    currentEffort: this.props.effort || 1,
   }
 
-  updateEffort(currentEffort: number) {
-    this.setState({ currentEffort })
-  }
+  updateEffort = (currentEffort: number) => this.setState({ currentEffort })
 
   onIncrease = () => this.updateEffort(this.state.currentEffort + 1)
   onDecrease = () => this.updateEffort(this.state.currentEffort - 1)
@@ -29,13 +24,14 @@ class App extends React.Component<Props, State> {
   render() {
     const { name } = this.props
     const { currentEffort } = this.state
-
-    if (currentEffort <= 0) {
+    if (currentEffort === 0) {
+      throw new Error('Increase your effort!')
+    } else if (currentEffort < 0) {
       throw new Error('Increase your effort!')
     }
 
     return (
-      <div>
+      <div style={{ border: '2px solid', margin: '0 1rem', padding: '1rem' }}>
         <h1>Hello {name + getExclamationMarks(currentEffort)}</h1>
 
         <div>
