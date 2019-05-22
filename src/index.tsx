@@ -33,7 +33,7 @@ import App from './App'
 //   }
 // }
 
-ReactDOM.render(<App name='Luis' effort={1} />, document.getElementById(
+ReactDOM.render(<App />, document.getElementById(
   'root'
 ) as HTMLElement)
 
