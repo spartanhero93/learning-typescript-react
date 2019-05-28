@@ -1,25 +1,24 @@
-import React, { useState, useReducer } from 'react'
+import React, { useReducer } from 'react'
 
 type StateType = {
-  // todos: string[],
-  text: string
+  todos: any,
+  text: any
 }
 type ActionType = {
-  type: "HANDLE_TEXT",
+  type: 'ADD_TODO' | 'REMOVE_TODO' | 'EDIT_TODO' | "HANDLE_TEXT",
   payload: string
 }
-// 'ADD_TODO' | 'REMOVE_TODO' | 'EDIT_TODO' |
 
 
 const initialState = {
-  // todos: [],
+  todos: [],
   text: ''
 }
 
-function reducer(state: StateType = initialState, action: ActionType) {
+function reducer(state: any, action: ActionType) {
   switch (action.type) {
-    // case 'ADD_TODO':
-    //   return [...state.todos, state.text]
+    case 'ADD_TODO':
+      return [...state.todos, state.text]
     case 'HANDLE_TEXT':
       return { text: action.payload }
     default:
@@ -27,13 +26,15 @@ function reducer(state: StateType = initialState, action: ActionType) {
   }
 }
 
-function App({ initialText = '' }) {
-  const [state, dispatch] = useReducer(reducer, { text: initialText })
+
+
+function App({ initialTodos = ['hello'], initialText = '' }) {
+  const [state, dispatch] = useReducer(reducer, { todos: initialTodos, text: initialText })
   return (
     <>
-      {/* <div>
+      <div>
         Todos: {state.todos.map((i: string) => <div>{i}</div>)}
-      </div> */}
+      </div>
       <h4>Current text: {state.text}</h4>
       <input onChange={e => dispatch({ type: 'HANDLE_TEXT', payload: e.target.value })} type='text' />
     </>
