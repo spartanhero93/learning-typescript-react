@@ -1,40 +1,19 @@
-import * as React from 'react'
-import ReactDOM from 'react-dom'
-import * as serviceWorker from './serviceWorker'
-import App from './App'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// class Root extends React.Component {
-//   state = {
-//     text: '',
-//     Family: ['Maria', 'Jose', 'Luis', 'Sarah', 'Carla'],
-//   }
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-//   handleChange = (event: any) => this.setState({ text: event.target.value })
-//   addMember = () =>
-//     this.setState({ Family: [...this.state.Family, this.state.text], text: '' })
-
-//   render() {
-//     const { Family } = this.state
-//     return (
-//       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-//         {Family.map(members => (
-//           <App name={members} />
-//         ))}
-
-//         <div style={{ position: 'absolute', bottom: '1rem' }}>
-//           <input
-//             onKeyPress={event => (event.key === 'Enter' ? this.addMember() : 'sad')}
-//             type='text'
-//             onChange={this.handleChange}
-//           />
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-ReactDOM.render(<App />, document.getElementById(
-  'root'
-) as HTMLElement)
-
-serviceWorker.unregister()
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
